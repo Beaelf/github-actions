@@ -1,0 +1,30 @@
+# Created by .ignore support plugin (hsz.mobi)
+.idea/
+.DS_Store
+clear_coverage.txt.tmp
+.vscode/
+
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary, built with `go test -c`
+*.test
+
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.out
+
+# local
+*local.*
+
+vendor/
+
+http-client.private.env.json
+coverage.txt
+cmd/apiserver/conf/.VENDORS_API_KEY.json
+
+test/http_private/
+/cmd/apiserver/apiserver
