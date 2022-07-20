@@ -4,8 +4,9 @@ jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
-      - run: echo ${{ github.event_name }}
-      - name: List files in the repository
+      - name: echo git event
+        run: echo ${{ github.event_name }}
+      - name: run
         if: ${{ github.event_name == 'push_request' }}
         run: echo 'gogogo...'
       - run: echo "🍏 This job's status is ${{ job.status }}."
