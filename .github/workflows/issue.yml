@@ -10,15 +10,10 @@ jobs:
     steps:
       - name: print
         run: |
-          echo '${{ github.event_name }}'
-          echo '${{ github.event.issue }}'
+          echo 'event: ${{ github.event_name }}'
           echo 'action: ${{ github.event.action }}'
-          echo 'changes: ${{ github.event.changes }}'
-          echo 'assignee: ${{ github.event.assignee }}'
-          echo 'label: ${{ github.event.label }}'
           echo 'title: ${{ github.event.issue.title }}'
-          echo 'description: ${{ github.event.issue.description }}'
-          echo 'issue: ${{ toJson(github.event.issue) }}'
-          echo 'body.json: ${{ toJson(github.event.body) }}'
           echo 'body: ${{ github.event.body }}'
+          echo 'repo: ${{ toJson(github.event.repository) }}'
+    
           
