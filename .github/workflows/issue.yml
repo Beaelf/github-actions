@@ -16,6 +16,6 @@ jobs:
           echo 'changes: ${{ github.event.changes }}'
           echo 'assignee: ${{ github.event.assignee }}'
           echo 'label: ${{ github.event.label }}'
-          echo 'title: ${{ github.event.title }}'
-          echo 'description: ${{ github.event.description }}'
+          echo 'title: ${{ github.event.issue.title }}'
+          echo 'description: ${{ github.event.issue.description }}'
           
