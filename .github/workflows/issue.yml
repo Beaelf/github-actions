@@ -12,8 +12,10 @@ jobs:
         run: |
           echo '${{ github.event_name }}'
           echo '${{ github.event.issue }}'
-          echo '${{ github.event.action }}'
-          echo '${{ github.event.changes }}'
-          echo '${{ github.event.assignee }}'
-          echo '${{ github.event.label }}'
+          echo 'action: ${{ github.event.action }}'
+          echo 'changes: ${{ github.event.changes }}'
+          echo 'assignee: ${{ github.event.assignee }}'
+          echo 'label: ${{ github.event.label }}'
+          echo 'title: ${{ github.event.title }}'
+          echo 'description: ${{ github.event.description }}'
           
