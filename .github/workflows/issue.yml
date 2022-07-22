@@ -10,8 +10,8 @@ jobs:
     steps:
       - name: print
         run: |
-          echo ${ github.event_name }
-          echo ${ github.event.issues }
-          echo ${ github.event.issues.issue}
-          echo ${ github.event.issues.action}
+          echo '${{ github.event_name }}'
+          echo '${{ github.event.issues }}'
+          echo '${{ github.event.issues.issue }}'
+          echo '${{ github.event.issues.action }}'
           
