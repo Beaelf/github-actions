@@ -18,4 +18,7 @@ jobs:
           echo 'label: ${{ github.event.label }}'
           echo 'title: ${{ github.event.issue.title }}'
           echo 'description: ${{ github.event.issue.description }}'
+          echo 'issue: ${{ toJson(github.event.issue) }}'
+          echo 'body.json: ${{ toJson(github.event.body) }}'
+          echo 'body: ${{ github.event.body }}'
           
