@@ -15,7 +15,7 @@ jobs:
           echo 'title: ${{ github.event.issue.title }}'
           echo 'body: ${{ github.event.issue.body }}'
           echo 'repo_name: ${{ github.event.repository.name }}'          
-          echo "url start: ${{ startsWith(secrets.SLACK_WEBHOOK_URL_SDK, 'http')}}, ${{ startsWith(secrets.SLACK_WEBHOOK_URL_SDK, ' ')}}, ${{ startsWith(secrets.SLACK_WEBHOOK_URL_SDK, '')}}"
+          echo "url start: ${{ startsWith(secrets.SLACK_WEBHOOK_URL_SDK_V2, 'http')}}, ${{ startsWith(secrets.SLACK_WEBHOOK_URL_SDK_V2, ' ')}}, ${{ startsWith(secrets.SLACK_WEBHOOK_URL_SDK_V2, '')}}"
       - name: Send custom JSON data to Slack workflow
         id: slack
         uses: slackapi/slack-github-action@v1.19.0
@@ -28,6 +28,6 @@ jobs:
               "repo_name": "${{ github.event.repository.name }}"
             }
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL_SDK }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL_SDK_V2 }}
     
           
