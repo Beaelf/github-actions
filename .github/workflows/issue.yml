@@ -11,7 +11,9 @@ jobs:
       - name: print
         run: |
           echo '${{ github.event_name }}'
-          echo '${{ github.event.issues }}'
-          echo '${{ github.event.issues.issue }}'
-          echo '${{ github.event.issues.action }}'
+          echo '${{ github.event.issue }}'
+          echo '${{ github.event.action }}'
+          echo '${{ github.event.changes }}'
+          echo '${{ github.event.assignee }}'
+          echo '${{ github.event.label }}'
           
