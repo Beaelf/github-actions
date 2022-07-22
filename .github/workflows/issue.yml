@@ -1,0 +1,17 @@
+name: new issue
+
+on:
+  issues
+
+jobs:
+  print_msg:
+    name: print_msg
+    runs-on: ubuntu-latest
+    steps:
+      - name: print
+        run: |
+          echo ${ github.event_name }
+          echo ${ github.event.issues }
+          echo ${ github.event.issues.issue}
+          echo ${ github.event.issues.action}
+          
