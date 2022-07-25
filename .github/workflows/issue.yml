@@ -17,7 +17,7 @@ jobs:
           echo 'event: ${{ github.event_name }}'
           echo 'action: ${{ github.event.action }}'
           echo 'repo_name: ${{ github.event.repository.name }}'
-          echo 'pr_url: ${{ github.event.pull_request.url }}'
+          echo 'pr_url: ${{ github.event.pull_request.html_url }}'
       - name: send PR to slack workflow
         id: slack
         uses: slackapi/slack-github-action@v1.19.0
@@ -26,7 +26,7 @@ jobs:
             {
               "event_title": "${{ github.event.pull_request.title }}",
               "event_name": "${{ github.event.event_name }}",
-              "event_url": "${{ github.event.pull_request.url }}",
+              "event_html_url": "${{ github.event.pull_request.html_url }}",
               "repo_name": "${{ github.event.repository.name }}"
             }
         env:
@@ -51,7 +51,7 @@ jobs:
             {
               "event_title": "${{ github.event.issue.title }}",
               "event_name": "${{ github.event.event_name }}",
-              "event_url": "${{ github.event.issue.html_url }}",
+              "event_html_url": "${{ github.event.issue.html_url }}",
               "repo_name": "${{ github.event.repository.name }}"
             }
         env:
