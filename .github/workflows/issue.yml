@@ -25,7 +25,7 @@ jobs:
           payload: |
             {
               "issue_title": "${{ github.event.pull_request.title }}",
-              "issue_body": "${{ github.event.pull_request.body }}",
+              "issue_body": "${{ github.event.pull_request.title }}",
               "issue_html_url": "${{ github.event.pull_request.url }}",
               "repo_name": "${{ github.event.repository.name }}"
             }
