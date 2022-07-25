@@ -8,7 +8,7 @@ on:
 
 jobs:
   pr_send_slack_msg:
-    name: send slack message
+    name: send slack message for PR
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     steps:
@@ -18,15 +18,15 @@ jobs:
           echo 'action: ${{ github.event.action }}'
           echo 'repo_name: ${{ github.event.repository.name }}'
           echo 'pr_url: ${{ github.event.pull_request.url }}'
-      - name: send pull request to slack workflow
+      - name: send PR to slack workflow
         id: slack
         uses: slackapi/slack-github-action@v1.19.0
         with:
           payload: |
             {
-              "issue_title": "${{ github.event.pull_request.title }}",
-              "issue_body": "${{ github.event.pull_request.title }}",
-              "issue_html_url": "${{ github.event.pull_request.url }}",
+              "event_title": "${{ github.event.pull_request.title }}",
+              "event_name": "${{ github.event.event_name }}",
+              "event_url": "${{ github.event.pull_request.url }}",
               "repo_name": "${{ github.event.repository.name }}"
             }
         env:
@@ -49,9 +49,9 @@ jobs:
         with:
           payload: |
             {
-              "issue_title": "${{ github.event.issue.title }}",
-              "issue_body": "${{ github.event.issue.body }}",
-              "issue_html_url": "${{ github.event.issue.html_url }}",
+              "event_title": "${{ github.event.issue.title }}",
+              "event_name": "${{ github.event.event_name }}",
+              "event_url": "${{ github.event.issue.html_url }}",
               "repo_name": "${{ github.event.repository.name }}"
             }
         env:
