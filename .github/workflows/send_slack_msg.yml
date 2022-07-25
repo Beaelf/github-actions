@@ -1,4 +1,4 @@
-name: new issue
+name: Send Slack Msg
 
 on:
   issues:
@@ -12,49 +12,35 @@ jobs:
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     steps:
-      - name: print PR info
-        run: |
-          echo 'event: ${{ github.event_name }}'
-          echo 'action: ${{ github.event.action }}'
-          echo 'repo_name: ${{ github.event.repository.name }}'
-          echo 'pr_url: ${{ github.event.pull_request.html_url }}'
       - name: send PR to slack workflow
         id: slack
         uses: slackapi/slack-github-action@v1.19.0
         with:
           payload: |
             {
-              "event_title": "${{ github.event.pull_request.title }}",
               "event_name": "${{ github.event_name }}",
               "event_html_url": "${{ github.event.pull_request.html_url }}",
               "repo_name": "${{ github.event.repository.name }}"
             }
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL_SDK_V2 }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL_SEND_MSG}}
           
   issue_send_slack_msg:
     name: send slack message for issue
     if: github.event_name == 'issues'
     runs-on: ubuntu-latest
     steps:
-      - name: print Issue info
-        run: |
-          echo 'event: ${{ github.event_name }}'
-          echo 'action: ${{ github.event.action }}'
-          echo 'repo_name: ${{ github.event.repository.name }}'
-          echo 'issue_html_url: ${{ github.event.issue.html_url }}'
       - name: send issue to slack workflow
         id: slack
         uses: slackapi/slack-github-action@v1.19.0
         with:
           payload: |
             {
-              "event_title": "${{ github.event.issue.title }}",
               "event_name": "${{ github.event_name }}",
               "event_html_url": "${{ github.event.issue.html_url }}",
               "repo_name": "${{ github.event.repository.name }}"
             }
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL_SDK_V2 }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL_SEND_MSG }}
     
           
