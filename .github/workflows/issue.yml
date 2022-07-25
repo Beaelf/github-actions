@@ -7,19 +7,12 @@ on:
     types: [opened]
 
 jobs:
-  send_slack_msg:
-    name: send slack message
+  pr_send_slack_msg:
+    name: send slack message for PR
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     steps:
-      - name: print Issue info
-        if: github.event_name == 'issues'
-        run: |
-          echo 'event: ${{ github.event_name }}'
-          echo 'action: ${{ github.event.action }}'
-          echo 'repo_name: ${{ github.event.repository.name }}'
-          echo 'issue_html_url: ${{ github.event.issue.html_url }}'
       - name: print PR info
-        if: github.event_name == 'pull_request'
         run: |
           echo 'event: ${{ github.event_name }}'
           echo 'action: ${{ github.event.action }}'
@@ -27,7 +20,30 @@ jobs:
           echo 'pr: ${{ toJson(github.event.pull_request) }}'
           echo 'pr_url: ${{ github.event.pull_request.url }}'
       - name: Send custom JSON data to Slack workflow
-        if: github.event_name == 'issues'
+        id: slack
+        uses: slackapi/slack-github-action@v1.19.0
+        with:
+          payload: |
+            {
+              "issue_title": "${{ github.event.pull_request.title }}",
+              "issue_body": "${{ github.event.pull_request.body }}",
+              "issue_html_url": "${{ github.event.pull_request.url }}",
+              "repo_name": "${{ github.event.repository.name }}"
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL_SDK_V2 }}
+  issue_send_slack_msg:
+    name: send slack message for Issue
+    if: github.event_name == 'issues'
+    runs-on: ubuntu-latest
+    steps:
+      - name: print Issue info
+        run: |
+          echo 'event: ${{ github.event_name }}'
+          echo 'action: ${{ github.event.action }}'
+          echo 'repo_name: ${{ github.event.repository.name }}'
+          echo 'issue_html_url: ${{ github.event.issue.html_url }}'
+      - name: Send custom JSON data to Slack workflow
         id: slack
         uses: slackapi/slack-github-action@v1.19.0
         with:
