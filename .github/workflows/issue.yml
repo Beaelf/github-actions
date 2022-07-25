@@ -25,7 +25,7 @@ jobs:
           payload: |
             {
               "event_title": "${{ github.event.pull_request.title }}",
-              "event_name": "${{ github.event.event_name }}",
+              "event_name": "${{ github.event_name }}",
               "event_html_url": "${{ github.event.pull_request.html_url }}",
               "repo_name": "${{ github.event.repository.name }}"
             }
@@ -50,7 +50,7 @@ jobs:
           payload: |
             {
               "event_title": "${{ github.event.issue.title }}",
-              "event_name": "${{ github.event.event_name }}",
+              "event_name": "${{ github.event_name }}",
               "event_html_url": "${{ github.event.issue.html_url }}",
               "repo_name": "${{ github.event.repository.name }}"
             }
