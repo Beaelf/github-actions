@@ -1,3 +1,3 @@
 # github-actions
 
-new project
+this a awesome project
